@@ -10,7 +10,7 @@ WB : Date de création :  08/03/2015
     wget http://downloads.raspberrypi.org/raspbian_latest
     cp raspbian_latest Raspian.img
 
->selon votre système d'exploitation le transfert sur la carte SD ou micro SD se fait differemment
+Selon votre système d'exploitation le transfert sur la carte SD ou micro SD se fait differemment
 ##Deuxième étape, Gravure de la carte SD 
 ###Sous Mac OS X 10.5
 
