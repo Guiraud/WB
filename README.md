@@ -11,7 +11,8 @@ WB : Date de création :  08/03/2015
     cp raspbian_latest Raspian.img
 
 >selon votre système d'exploitation le transfert sur la carte SD ou micro SD se fait differemment
-##Sous Mac OS X 10.5
+##Deuxième étape, Gravure de la carte SD 
+###Sous Mac OS X 10.5
 
     sudo dd bs=1m if=chemin_vers_Raspian.img of=/dev/diskn
 
