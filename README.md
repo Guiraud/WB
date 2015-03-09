@@ -56,9 +56,9 @@ Selon votre système d'exploitation le transfert sur la carte SD ou micro SD se 
 ##Sous Windows
 * Téléchargez l'image du système d'exploitation spécifique au Raspberry PI à partir [du site Raspian](http://downloads.raspberrypi.org/raspbian_latest).
 * Téléchargez l'outil Win32DiskImager à partir du [dépot sourceforge](http://sourceforge.net/projects/win32diskimager/)
-* Décompressez le fichier zip et exécutez le en tant qu'administrateur.
+* Décompressez le fichier zip et exécutez-le "en tant qu'administrateur".
 * Séletionnez l'image que vous venez de télécharger. Choisissez la lettre du lecteur de votre carte SD.
-* Attention de ne pas vous trompez de lecteur, tout sera effacé sur le lecteur de destination !
-Cliquez sur `Write`
-Lorsque la gravure est terminé ejectez la carte SD.
+Attention de ne pas vous trompez de lecteur, tout sera effacé sur le lecteur de destination !
+* Cliquez sur `Write`
+* Lorsque la gravure est terminé ejectez la carte SD.
 
