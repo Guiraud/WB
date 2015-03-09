@@ -61,9 +61,13 @@ Selon votre système d'exploitation le transfert sur la carte SD ou micro SD se 
 Attention de ne pas vous trompez de lecteur, tout sera effacé sur le lecteur de destination !
 * Cliquez sur `Write`
 * Lorsque la gravure est terminé ejectez la carte SD.
+
 ## Se connecter à la Raspberry PI
+
 >D'abord vérifier que la carte SD est bien gravé. En général quand vous branchez l'alimentation sur la Raspberry, deux leds devrait s'allumer. Une led rouge reste allumée et une led verte se met à clignoter. Si les deux leds ont une lumières fixe, c'est qu'il y a un problème avec la carte SD et que la Raspberry n'y trouve pas l'information nécessaire un démarrage normal.
+
 ### Comment obtenir l'adresse IP de la Raspberry PI
+
 #### Sous Windows
 Dans le panneau de contrôle, 
 ![Voir les connections](http://www.hacktrix.com/wp-content/uploads/2010/09/delete-dial-up-connection-in-windows-7.png)
