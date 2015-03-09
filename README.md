@@ -1,5 +1,4 @@
-> WB
-> Date de création :  08/03/2015
+WB : Date de création :  08/03/2015
 #Installation d'une Whistle BOX
 
 ## Environnement de travail
@@ -11,7 +10,7 @@
     wget http://downloads.raspberrypi.org/raspbian_latest
     cp raspbian_latest Raspian.img
 
-#selon votre système d'exploitation le transfert sur la carte SD ou micro SD se fait differemment
+>selon votre système d'exploitation le transfert sur la carte SD ou micro SD se fait differemment
 ##Sous Mac OS X 10.5
 
     sudo dd bs=1m if=chemin_vers_Raspian.img of=/dev/diskn
@@ -19,6 +18,7 @@
 >Vous pourrez connaitre le chemin en passant par la commande 'pwd'
 >Le diskn correspond à la carte micros SD connectée via une prise USB. 
 >On peut retrouver le 'n' en passant par l'utilitaire de disque en ligne de commande 'diskutil list'. Vous devriez avoir un résultat du type :
+
     /dev/disk0
        #:                       TYPE NAME                    SIZE       IDENTIFIER
        0:      GUID_partition_scheme                        *500.1 GB   disk0
