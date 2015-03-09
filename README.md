@@ -70,7 +70,9 @@ Attention de ne pas vous trompez de lecteur, tout sera effacé sur le lecteur de
 
 #### Sous Windows
 Dans le panneau de contrôle, 
+
 ![Voir les connections](http://www.hacktrix.com/wp-content/uploads/2010/09/delete-dial-up-connection-in-windows-7.png)
 puis regardez l'état de votre connection :
+
 ![État de votre connection](http://www.home-network-help.com/images/network-connection-status-for-network-adapter.jpg)
 
