@@ -53,7 +53,7 @@ Selon votre système d'exploitation le transfert sur la carte SD ou micro SD se 
     974+1 records in
     974+1 records out
     1021592274 bytes transferred in 480.752682 secs (2124985 bytes/sec)
-##Sous Windows
+###Sous Windows
 * Téléchargez l'image du système d'exploitation spécifique au Raspberry PI à partir [du site Raspian](http://downloads.raspberrypi.org/raspbian_latest).
 * Téléchargez l'outil Win32DiskImager à partir du [dépot sourceforge](http://sourceforge.net/projects/win32diskimager/)
 * Décompressez le fichier zip et exécutez-le "en tant qu'administrateur".
@@ -61,4 +61,12 @@ Selon votre système d'exploitation le transfert sur la carte SD ou micro SD se 
 Attention de ne pas vous trompez de lecteur, tout sera effacé sur le lecteur de destination !
 * Cliquez sur `Write`
 * Lorsque la gravure est terminé ejectez la carte SD.
+## Se connecter à la Raspberry PI
+>D'abord vérifier que la carte SD est bien gravé. En général quand vous branchez l'alimentation sur la Raspberry, deux leds devrait s'allumer. Une led rouge reste allumée et une led verte se met à clignoter. Si les deux leds ont une lumières fixe, c'est qu'il y a un problème avec la carte SD et que la Raspberry n'y trouve pas l'information nécessaire un démarrage normal.
+### Comment obtenir l'adresse IP de la Raspberry PI
+#### Sous Windows
+Dans le panneau de contrôle, 
+![Voir les connections](http://www.hacktrix.com/wp-content/uploads/2010/09/delete-dial-up-connection-in-windows-7.png)
+puis regardez l'état de votre connection :
+![État de votre connection](http://www.home-network-help.com/images/network-connection-status-for-network-adapter.jpg)
 
