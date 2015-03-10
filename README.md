@@ -52,9 +52,9 @@ Selon votre système d'exploitation le transfert sur la carte SD ou micro SD se 
 
     $sudo dd bs=1m if=Raspian.img of=/dev/disk2
     Password:
-    974+1 records in
-    974+1 records out
-    1021592274 bytes transferred in 480.752682 secs (2124985 bytes/sec)
+    3125+0 records in
+    3125+0 records out
+    3276800000 bytes transferred in 1367.577549 secs (2396062 bytes/sec)
 
 >Ejectez la carte SD avec la commande suivante :
     diskutil eject /dev/disk2
