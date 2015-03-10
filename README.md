@@ -2,13 +2,15 @@ WB : Date de création :  08/03/2015
 #Installation d'une Whistle BOX
 
 ## Environnement de travail
+>Assurez vous d'avoir au moins 5 Go d'espace libre sur votre disque de travail
 >créez un dossier «Install» dans le dossier WB que vous venez de télécharger via Github.
 >Sinon créez-le
 >Ouvrez un terminal et rendez-vous dans le dossier «Install».
 
 ## Première étape téléchargement de l'image ISO Raspbian la plus récente :
-    wget http://downloads.raspberrypi.org/raspbian_latest
-    cp raspbian_latest Raspian.img
+    wget -O Raspian.zip http://downloads.raspberrypi.org/raspbian_latest
+    unzip Raspian.zip
+    cp *-raspbian-*.img Raspian.img
 
 Selon votre système d'exploitation le transfert sur la carte SD ou micro SD se fait differemment
 ##Deuxième étape, Gravure de la carte SD 
