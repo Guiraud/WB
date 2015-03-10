@@ -2,7 +2,7 @@ WB : Date de création :  08/03/2015
 #Installation d'une Whistle BOX
 
 ## Environnement de travail
->Assurez vous d'avoir au moins 5 Go d'espace libre sur votre disque de travail
+>Assurez vous d'avoir au moins 7 Go d'espace libre sur votre disque de travail
 >créez un dossier «Install» dans le dossier WB que vous venez de télécharger via Github.
 >Sinon créez-le
 >Ouvrez un terminal et rendez-vous dans le dossier «Install».
