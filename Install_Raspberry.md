@@ -148,7 +148,7 @@ Le login est pi et le mote de passe raspberry
     fr_FR.UTF-8... done
     Generation complete.
 
-Voilà C'est la fin de la première partie. à ce niveau là, c'est bien de faire une pause. Vous avez une rapberry PI qui est prête pour l'instalation du système WHISTLEBOX.
+Voilà c'est la fin de la première partie. À ce niveau là, c'est bien de faire une pause. Vous avez une rapberry PI qui est prête pour l'instalation du système WHISTLEBOX.
 
 
 
