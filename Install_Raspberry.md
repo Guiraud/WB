@@ -123,13 +123,17 @@ Le login est pi et le mote de passe raspberry
 
 ### Changement de l'espace occupé
 >RaspBian est configuré au départ pour une carte SD de petite taille. Il faut donc demander au système de remplir entièrement la carte afin d'avoir suffisamment de place.
+
     sudo raspi-config
+
 >Sélectionnez «Ensures that all of the SD card storage is available to the OS»
 >Une fois que c'est terminé vous avez ce message : «The filesystem will be enlarged upon the next reboot»
 >faites circuler votre selection jusqu'à «Finish»
 >rebootez.
 >Logiquement vous devriez être déconnecté de votre Raspberry PI. Reconnectez-vous en utilisant le mot de passe que vous avez créé plus haut.
-###Changment de la langue du système
+
+###Changement de la langue du système
+
 >Une fois reconnecté revenez sur l'interface de connection
 >Sélectionnez l'option 4 : «Internationalisation Options   Set up language and regional settings to match your location»
 >Descendez à l'aide des flèches du clavier jusqu'à «fr_FR.UTF-8 UTF-8»
@@ -138,6 +142,7 @@ Le login est pi et le mote de passe raspberry
 >à nouveau sélectionnez la langue française : «fr_FR.UTF-8»
 >Tapez entrée
 >Vous devriez voir ce message apparaître
+
     Generating locales (this might take a while)...
     en_GB.UTF-8... done
     fr_FR.UTF-8... done
