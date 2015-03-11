@@ -87,7 +87,9 @@ puis regardez l'état de votre connection :
 >
 
 ### Se connecter en ligne de commande via SSH
+
 Le login est pi et le mote de passe raspberry
+
     $ssh pi@192.168.0.14
     The authenticity of host '192.168.0.14 (192.168.0.14)' can't be established.
     RSA key fingerprint is 0b:4d:90:82:77:00:50:c5:f1:12:06:fd:ce:41:a3:6b.
@@ -108,20 +110,28 @@ Le login est pi et le mote de passe raspberry
     NOTICE: the software on this Raspberry Pi has not been fully configured. Please run 'sudo raspi-config'
     
     pi@raspberrypi ~ $
+
 ## Les premiers pas sous RaspBerry PI
 ### Changement du mot de passe
+
     pi@raspberrypi ~ $ sudo raspi-config
+
 >Choisissez l'option 2 : «Change password for the default user (pi)» 
+
     Enter new UNIX password: 
     Retype new UNIX password:
+
 >Si tout c'est bien passé vous avez le message suivant :
+
     password changed successfully
 
 ### Mise à jour du système
+
     sudo apt-get update
     sudo apt-get -y upgrade
 
 ### Changement de l'espace occupé
+
 >RaspBian est configuré au départ pour une carte SD de petite taille. Il faut donc demander au système de remplir entièrement la carte afin d'avoir suffisamment de place.
 
     sudo raspi-config
