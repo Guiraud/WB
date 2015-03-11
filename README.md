@@ -17,8 +17,10 @@ Pour installer la base du système, il faut commencer par se procurer
 6. Ensuite allez sur cette [page](https://github.com/Guiraud/WB/blob/master/Install_Raspberry.md)
 
 ## Création de votre clef PGP
+
 ## Installation de la Whistlebox
-Installation sur la Raspberry PI des fichiers du serveur.
+
+###Installation sur la Raspberry PI des fichiers du serveur.
 
     Guiraud@WB$scp files/web.tar.bz pi@192.168.0.14:
     pi@192.168.0.14's password: 
@@ -47,4 +49,13 @@ Installation sur la Raspberry PI des fichiers du serveur.
     www/fichiers/admin/img/vide.gif
     pi@raspberrypi ~ $ 
 
+Effacer les fichiers du serveurs par défaut.
 
+    pi@raspberrypi ~ $ sudo rm -f /var/www/index.html.en /var/www/index.html
+    pi@raspberrypi ~ $ 
+
+### Démarrage du serveur tor
+    sudo -s
+    cd /var/lib/tor
+    mkdir hidden_service
+    service tor restart
