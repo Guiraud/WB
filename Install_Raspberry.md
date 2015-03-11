@@ -139,18 +139,25 @@ Le login est pi et le mote de passe raspberry
 >Sélectionnez «Ensures that all of the SD card storage is available to the OS»
 >Une fois que c'est terminé vous avez ce message : «The filesystem will be enlarged upon the next reboot»
 >faites circuler votre selection jusqu'à «Finish»
->rebootez.
+>Rebootez.
 >Logiquement vous devriez être déconnecté de votre Raspberry PI. Reconnectez-vous en utilisant le mot de passe que vous avez créé plus haut.
 
 ###Changement de la langue du système
 
 >Une fois reconnecté revenez sur l'interface de connection
+
 >Sélectionnez l'option 4 : «Internationalisation Options   Set up language and regional settings to match your location»
+
 >Descendez à l'aide des flèches du clavier jusqu'à «fr_FR.UTF-8 UTF-8»
+
 >La barre d'espace permet de sélectionner la langue. Un astérisque "*" devrait apparaitre.
+
 >Tapez sur la touche entrée
+
 >à nouveau sélectionnez la langue française : «fr_FR.UTF-8»
+
 >Tapez entrée
+
 >Vous devriez voir ce message apparaître
 
     Generating locales (this might take a while)...
