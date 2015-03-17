@@ -28,6 +28,8 @@ sudo chown debian-tor /var/lib/tor/hidden_service/
 sudo chown -R www-data /var/www/upload/
 sudo chown -R www-data /var/www/fichiers/
 sudo chown www-data:www-data /var/www/*
+cd /var/www
+git clone https://github.com/cgdave/webfilebrowser
 
 sudo sed -i '73iHiddenServiceDir /var/lib/tor/hidden_service/' /etc/tor/torrc
 sudo sed -i '74iHiddenServicePort 80 127.0.0.1:80' /etc/tor/torrc
