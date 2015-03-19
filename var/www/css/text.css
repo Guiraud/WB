@@ -1,0 +1,129 @@
+@charset "UTF-8";
+* {
+	margin: 0px;
+	padding: 0px;
+}
+html {
+        background-color: #333333;
+        -webkit-background-size: cover; /* pour Chrome et Safari */
+        -moz-background-size: cover; /* pour Firefox */
+        -o-background-size: cover; /* pour Opera */
+        background-size: cover; /* version standardisée */
+        margin:0;
+}
+#Txt {
+	width: 600px;
+	position: relative;
+        margin-left: auto;
+        margin-right: auto;
+	top: 20px;
+        text-align: center;
+}
+#Txt p img {
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+#Txt p {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 14px;
+	font-weight: 200;
+	color: white;
+	line-height: 20px;
+}
+#Txt h6 {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 12px;
+	font-weight: 200;
+	color: white;
+	line-height: 16	px;
+}
+#Txt h1 {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 21px;
+	font-weight: bold;
+	color: white;
+	line-height: 26px;
+        padding-top:15px;
+        margin-bottom:-10px;
+        text-decoration: none;
+}
+#Txt h2 {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	color: black;
+        background: #F2F2F2;
+	line-height: 16	px;
+        text-align: left;
+        padding: 10px;
+}
+#Txt h3 {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	color: white;
+	line-height: 22px;
+        padding: 10px;
+}
+#mon_fichier {         
+        text-align: center;
+	color: white;
+        width:580px;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        border	: 1px solid #F2F2F2;
+}
+#envoi {         
+        text-align: center;
+	color: white;
+        background: red;
+        width:200px;
+        height:50px;
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+        text-transform: uppercase;
+        border:0;
+        margin: 20px;
+}
+#envoi:hover {         
+	color: white;
+	font-size: 17px;
+        background: #39B54A;
+        text-align: center;
+}
+#Txt p a {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+        background: red;
+        padding: 20px;
+        text-decoration: none;
+        text-align: center;
+}
+#Txt p a:hover {
+	color: white;
+        background: #39B54A;
+        padding: 20px;
+        border-radius: 4px;
+        text-align: center;
+}
+#Txt h3 a {
+	font-family: 'Helvetica', 'Arial', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+        background: red;
+        border-left: 2px solid #f2f2f2;
+        padding: 15px 20px;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;	
+}
+#Txt h3 a:hover {
+	color: red;
+        background: #f2f2f2;
+        padding: 15px 20px;
+        text-align: center;
+}

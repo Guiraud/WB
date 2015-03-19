@@ -17,9 +17,12 @@ Pour installer la base du système, il faut commencer par se procurer
 6. Ensuite allez sur cette [page](https://github.com/Guiraud/WB/blob/master/Install_Raspberry.md)
 
 ## Création de votre clef PGP
+L'installation précédente vous permet désormais de vous connecter à votre 
 
 ## Installation de la Whistlebox
-
+### Installation de SE-linux
+Configuration du moyau sécurisé	
+    selinux-activate
 ###Installation sur la Raspberry PI des fichiers du serveur.
 
     Guiraud@WB$scp files/web.tar.bz pi@192.168.0.14:
