@@ -9,7 +9,7 @@ if ($_GET['s']=="")
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>D&eacute;pot s&eacute;curis&eacute; de Fichier</title>
 <link rel="shortcut icon" href="img/favicon3.png">
-<link href="CSS/text.css" rel="stylesheet" type="text/css" />
+<link href="css/text.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>

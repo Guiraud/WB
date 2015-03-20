@@ -13,6 +13,7 @@ sudo apt-get -y install libcurl3-openssl-dev
 sudo apt-get -y install php-pear php5-dev
 sudo apt-get -y install selinux-basics selinux-policy-default
 sudo apt-get -y install php5-mysql mysql-server
+sudo pecl channel-update pecl.php.net
 sudo pecl install gnupg
 echo -n "*****************************************************************************"
 echo -n "Effacement des fichiers de serveur par défaut"
@@ -30,7 +31,8 @@ sudo chown -R www-data /var/www/fichiers/
 sudo chown www-data:www-data /var/www/*
 cd /var/www
 git clone https://github.com/cgdave/webfilebrowser
-
+sudo mv webfilebrowser Documents
+sudo sed 's/Web File Browser 0.4b15/Explorateur de fichiers/g' Documents/wfb.php > Documents/index.php
 sudo sed -i '73iHiddenServiceDir /var/lib/tor/hidden_service/' /etc/tor/torrc
 sudo sed -i '74iHiddenServicePort 80 127.0.0.1:80' /etc/tor/torrc
 sudo sed -i '75iHiddenServicePort 22 127.0.0.1:22' /etc/tor/torrc

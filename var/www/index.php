@@ -1,6 +1,6 @@
 <?php 
 $redirect = 'OnionWebsite/redirectAL.html';
-$file = "../iplist.txt";
+$file = "iplist.txt";
 $searchfor = $_SERVER["REMOTE_ADDR"];;
 
 $contents = file_get_contents($file);
