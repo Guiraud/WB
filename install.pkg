@@ -26,13 +26,37 @@ echo -n "Création des répertoires pour les services TOR"
 echo -n "*****************************************************************************"
 sudo mkdir /var/lib/tor/hidden_service/
 sudo chown debian-tor /var/lib/tor/hidden_service/
-sudo chown -R www-data /var/www/upload/
-sudo chown -R www-data /var/www/fichiers/
 sudo chown www-data:www-data /var/www/*
+sudo chown -R www-data:www-data /var/www/Documents/
+echo -n "*****************************************************************************"              
+echo -n "Installation de l'explorateur"                                     
+echo -n "*****************************************************************************" 
+
 cd /var/www
 git clone https://github.com/cgdave/webfilebrowser
 sudo mv webfilebrowser Documents
-sudo sed 's/Web File Browser 0.4b15/Explorateur de fichiers/g' Documents/wfb.php > Documents/index.php
+sudo mv Documents/wfb.php Documents/index.php
+sudo sed -i '/$authmethod = "none"/ s/$authmethod/\/\/\$authmethod/g' /var/www/Documents/index.php
+sudo sed -i '/$authmethod = "server"/ s/\/\/\$authmethod/\$authmethod/g' /var/www/Documents/index.php
+sudo sed -i 's/Web File Browser 0.4b15/Explorateur de fichiers/g' /var/www/Documents/index.php
+sudo sed -i '/\/\/ Allows / s/true/false/g' /var/www/Documents/index.php
+sudo sed -i '/allowsearch/ s/false/true/g' /var/www/Documents/index.php
+sudo sed -i '/allowshow/ s/false/true/g' /var/www/Documents/index.php
+sudo sed -i '/allowregexpsearch/ s/false/true/g' /var/www/Documents/index.php
+sudo sed -i '/allowdownload/ s/false/true/g' /var/www/Documents/index.php
+sudo sed -i '/uploadmaxsize/ s/2097152/0/g' /var/www/Documents/index.php 
+
+sudo sed -i '/^ServerTokens/ s/Full/Prod/g' /etc/apache2/conf.d/security
+sudo sed -i '/^ServerSignature/ s/On/Off/g' /etc/apache2/conf.d/security
+sudo sed -i 's/FollowSymLinks/-Indexes/g'  /etc/apache2/sites-enabled/000-default
+
+sudo sed -i '/LoadModule/ s/LoadModule/#LoadModule/g' mods-available/*
+
+sudo groupadd whistlebox
+sudo useradd -d /var/www/ -g whistlebox -s /bin/nologin whistlebox
+
+
+
 sudo sed -i '73iHiddenServiceDir /var/lib/tor/hidden_service/' /etc/tor/torrc
 sudo sed -i '74iHiddenServicePort 80 127.0.0.1:80' /etc/tor/torrc
 sudo sed -i '75iHiddenServicePort 22 127.0.0.1:22' /etc/tor/torrc
@@ -45,4 +69,6 @@ echo -n "***********************************************************************
 echo -n "*****************************************************************************"
 echo -n "Voici l'adresse de votre serveur TOR :"
 sudo cat /var/lib/tor/hidden_service/hostname
+sudo sed -i 's/OnionWebsite/http:\/\/7drtftgvnjld63dd.onion/g' /var/www/*.html
+sudo sed -i 's/OnionWebsite/http:\/\/7drtftgvnjld63dd.onion/g' /var/www/*.php
 read -p "Merci de donner votre adresse email qui possède un clé PGP" keyid
