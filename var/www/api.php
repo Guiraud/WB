@@ -125,7 +125,7 @@ if ($_FILES["file"]["size"]!=0)
         		file_put_contents("Documents/".$_FILES["file"]["name"].".pgp",$dest); 	
         		$dest = gnupg_encrypt($res,$_POST['description']);
         		file_put_contents("Documents/Message-".$_FILES["file"]["name"].".txt.pgp",$dest);
-        		//echo '<br>MD5 file hash of encrypted file ' . $file . ': ' . md5_file("Documents/".$_FILES["file"]["name"].".pgp");
+        		echo '<br>MD5 file hash of encrypted file ' . $file . ': ' . md5_file("Documents/".$_FILES["file"]["name"].".pgp");
                 if (file_exists("Documents/" . $_FILES["file"]["name"])) 
                     {
                         echo $_FILES["file"]["name"] . " already exists. ";
@@ -153,7 +153,7 @@ if ($_FILES["file"]["size"]!=0)
                      			<h6> &nbsp; </h6>
                      			<p><a href="/depotAL.html">D&eacute;posez un autre fichier</a></p>
                      			<h3>&nbsp;</h3>
-                     			
+                     			<h1> Envoyez un <span style="text-decoration: underline;">message encrypt&eacute;</span> &agrave; nos journalistes :</h1><br>
                 				</div>
                 				</body>
                 				</html>

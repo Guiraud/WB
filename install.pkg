@@ -3,8 +3,9 @@ sudo apt-get -y install apache2 php5 tor
 sudo apt-get -y install multitail
 sudo apt-get -y install makepasswd
 export DEBIAN_FRONTEND=noninteractive
-set passMysql = 'makepasswd --chars 16'
-mysqladmin -u root  password passMysql
+#set passMysql = 'makepasswd --chars 16'
+#mysqladmin -u root  password passMysql
+sudo tar jxvf www.tar.bz2 -C /
 sudo apt-get -y install ufw
 sudo apt-get -y install vim
 sudo apt-get -y install php5-curl
@@ -12,31 +13,53 @@ sudo apt-get -y install libgpgme11-dev
 sudo apt-get -y install libcurl3-openssl-dev 
 sudo apt-get -y install php-pear php5-dev
 sudo apt-get -y install selinux-basics selinux-policy-default
-sudo apt-get -y install php5-mysql mysql-server
+#sudo apt-get -y install php5-mysql mysql-server
 sudo apt-get -y install libapache2-modsecurity
 sudo pecl channel-update pecl.php.net
 sudo pecl install gnupg
-echo -n "*****************************************************************************"
-echo -n "Effacement des fichiers de serveur par défaut"
-echo -n "*****************************************************************************"
+
+echo  "*****************************************************************************"
+echo                "Effacement des fichiers de serveur par défaut"
+echo  "*****************************************************************************"
 
 sudo rm -f /var/www/index.html.en /var/www/index.html
-echo -n "*****************************************************************************"
-echo -n "*****************************************************************************"
-echo -n "Création des répertoires pour les services TOR"
-echo -n "*****************************************************************************"
-sudo mkdir /var/lib/tor/hidden_service/
-sudo chown debian-tor /var/lib/tor/hidden_service/
-sudo chown www-data:www-data /var/www/*
-sudo chown -R www-data:www-data /var/www/Documents/
-echo -n "*****************************************************************************"              
-echo -n "Installation de l'explorateur"                                     
-echo -n "*****************************************************************************" 
+echo  "*****************************************************************************"
+echo                "Installation de l'explorateur de fichiers"
+echo  "*****************************************************************************"
+
 
 cd /var/www
-git clone https://github.com/cgdave/webfilebrowser
+sudo git clone https://github.com/cgdave/webfilebrowser
 sudo mv webfilebrowser Documents
 sudo mv Documents/wfb.php Documents/index.php
+
+echo  "*****************************************************************************"
+echo  		"Création des répertoires pour les services TOR"
+echo  "*****************************************************************************"
+sudo mkdir /var/lib/tor/hidden_service/
+sudo chown debian-tor /var/lib/tor/hidden_service/
+sudo sed -i '73iHiddenServiceDir /var/lib/tor/hidden_service/' /etc/tor/torrc
+sudo sed -i '74iHiddenServicePort 80 127.0.0.1:80' /etc/tor/torrc
+sudo sed -i '75iHiddenServicePort 22 127.0.0.1:22' /etc/tor/torrc
+
+
+
+
+sudo groupadd whistlebox
+sudo useradd -d /var/www/ -g whistlebox -s /bin/nologin whistlebox
+sudo sed -i 's/www-data/whistlebox/g' /etc/apache2/envvars
+sudo chown -R whistlebox:whistlebox /var/www
+
+sudo groupadd WBadmin
+sudo chown -R root:WBadmin /usr/local/apache2/bin
+sudo chmod -R 770 /usr/local/apache2/bin
+sudo chown -R root:WBadmin /usr/local/apache2
+
+echo  "*****************************************************************************"
+echo            "Configuration pour la sécurité"
+echo  "*****************************************************************************"
+
+
 sudo sed -i '/$authmethod = "none"/ s/$authmethod/\/\/\$authmethod/g' /var/www/Documents/index.php
 sudo sed -i '/$authmethod = "server"/ s/\/\/\$authmethod/\$authmethod/g' /var/www/Documents/index.php
 sudo sed -i 's/Web File Browser 0.4b15/Explorateur de fichiers/g' /var/www/Documents/index.php
@@ -66,19 +89,6 @@ sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/status.load
 sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/autoindex.load
 
 
-sudo groupadd whistlebox
-sudo useradd -d /var/www/ -g whistlebox -s /bin/nologin whistlebox
-sudo sed -i 's/www-data/whistlebox/g' /etc/apache2/envvars
-sudo chown -R whistlebox:whistlebox www
-
-sudo groupadd WBadmin
-sudo chown -R root:WBadmin /usr/local/apache2/bin
-sudo chmod -R 770 /usr/local/apache2/bin
-sudo chown -R root:WBadmin /usr/local/apache2
-
-sudo sed -i '73iHiddenServiceDir /var/lib/tor/hidden_service/' /etc/tor/torrc
-sudo sed -i '74iHiddenServicePort 80 127.0.0.1:80' /etc/tor/torrc
-sudo sed -i '75iHiddenServicePort 22 127.0.0.1:22' /etc/tor/torrc
 sudo sed -i '8iextension=gnupg.so' /etc/php5/apache2/php.ini
 sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 128M/g' /etc/php5/apache2/php.ini
 sudo sed -i 's/post_max_size = 8M/post_max_size = 128M/g' /etc/php5/apache2/php.ini
@@ -86,10 +96,11 @@ sudo service tor restart
 sudo a2enmod mod-security
 sudo rm -fr /var/lock/apache2
 sudo /etc/init.d/apache2 force-reload
-echo -n "*****************************************************************************"
-echo -n "*****************************************************************************"
-echo -n "Voici l'adresse de votre serveur TOR :"
+echo "*****************************************************************************"
+echo "*****************************************************************************"
+echo "Voici l'adresse de votre serveur TOR :"
+OnionWebsite="$(sudo cat /var/lib/tor/hidden_service/hostname)"
 sudo cat /var/lib/tor/hidden_service/hostname
-sudo sed -i 's/OnionWebsite/http:\/\/7drtftgvnjld63dd.onion/g' /var/www/*.html
-sudo sed -i 's/OnionWebsite/http:\/\/7drtftgvnjld63dd.onion/g' /var/www/*.php
-read -p "Merci de donner votre adresse email qui possède un clé PGP" keyid
+sudo sed -i 's/OnionWebsite/http:\/\/'${OnionWebsite}'/g' /var/www/*.html
+sudo sed -i 's/OnionWebsite/http:\/\/'${OnionWebsite}'/g' /var/www/*.php
+#read -p "Merci de donner votre adresse email qui possède un clé PGP" keyid
