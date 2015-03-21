@@ -27,11 +27,11 @@ echo  "*************************************************************************
 echo                "Installation de l'explorateur de fichiers"
 echo  "*****************************************************************************"
 
-
+sudo tar jxvf www.tar.bz2 -C /
 cd /var/www
-sudo git clone https://github.com/cgdave/webfilebrowser
-sudo mv webfilebrowser Documents
-sudo mv Documents/wfb.php Documents/index.php
+sudo git clone https://github.com/cgdave/webfilebrowser Documents
+sudo mv /var/www/webfilebrowser /var/www/Documents
+sudo mv /var/www/Documents/wfb.php /var/www/Documents/index.php
 
 echo  "*****************************************************************************"
 echo  		"Création des répertoires pour les services TOR"
@@ -41,9 +41,7 @@ sudo chown debian-tor /var/lib/tor/hidden_service/
 sudo sed -i '73iHiddenServiceDir /var/lib/tor/hidden_service/' /etc/tor/torrc
 sudo sed -i '74iHiddenServicePort 80 127.0.0.1:80' /etc/tor/torrc
 sudo sed -i '75iHiddenServicePort 22 127.0.0.1:22' /etc/tor/torrc
-
-
-
+sudo service tor restart
 
 sudo groupadd whistlebox
 sudo useradd -d /var/www/ -g whistlebox -s /bin/nologin whistlebox
@@ -61,7 +59,7 @@ echo  "*************************************************************************
 
 
 sudo sed -i '/$authmethod = "none"/ s/$authmethod/\/\/\$authmethod/g' /var/www/Documents/index.php
-sudo sed -i '/$authmethod = "server"/ s/\/\/\$authmethod/\$authmethod/g' /var/www/Documents/index.php
+sudo sed -i '/$authmethod = "realm"/ s/\/\/\$authmethod/\$authmethod/g' /var/www/Documents/index.php
 sudo sed -i 's/Web File Browser 0.4b15/Explorateur de fichiers/g' /var/www/Documents/index.php
 sudo sed -i '/\/\/ Allows / s/true/false/g' /var/www/Documents/index.php
 sudo sed -i '/allowsearch/ s/false/true/g' /var/www/Documents/index.php
@@ -72,11 +70,14 @@ sudo sed -i '/uploadmaxsize/ s/2097152/0/g' /var/www/Documents/index.php
 
 sudo sed -i '/^ServerTokens/ s/Full/Prod/g' /etc/apache2/conf.d/security
 sudo sed -i '/^ServerSignature/ s/On/Off/g' /etc/apache2/conf.d/security
-sudo sed -i 's/FollowSymLinks/-Indexes/g'  /etc/apache2/sites-enabled/000-default
+sudo sed -i 's/-FollowSymLinks/-Indexes/g'  /etc/apache2/sites-enabled/000-default
 sudo sed -i '6i                Order deny,allow' /etc/apache2/sites-enabled/000-default
-sudo sed -i 's/MultiViews//g'  /etc/apache2/sites-enabled/000-default
+sudo sed -i 's/-MultiViews//g'  /etc/apache2/sites-enabled/000-default
 
-sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/alias.load
+
+
+sudo sed -i '/ScriptAlias/d' /etc/apache2/sites-enabled/000-default
+#sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/alias.load
 sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/env.load
 sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/asis.load
 sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/filter.load
@@ -88,11 +89,10 @@ sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/setenvif.lo
 sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/status.load
 sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/autoindex.load
 
-
+#sudo sed -i '1iextension=gnupg.so' /etc/php5/apache2/php.ini
 sudo sed -i '8iextension=gnupg.so' /etc/php5/apache2/php.ini
 sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 128M/g' /etc/php5/apache2/php.ini
 sudo sed -i 's/post_max_size = 8M/post_max_size = 128M/g' /etc/php5/apache2/php.ini
-sudo service tor restart
 sudo a2enmod mod-security
 sudo rm -fr /var/lock/apache2
 sudo /etc/init.d/apache2 force-reload
@@ -100,7 +100,7 @@ echo "**************************************************************************
 echo "*****************************************************************************"
 echo "Voici l'adresse de votre serveur TOR :"
 OnionWebsite="$(sudo cat /var/lib/tor/hidden_service/hostname)"
-sudo cat /var/lib/tor/hidden_service/hostname
+#sudo cat /var/lib/tor/hidden_service/hostname
 sudo sed -i 's/OnionWebsite/http:\/\/'${OnionWebsite}'/g' /var/www/*.html
 sudo sed -i 's/OnionWebsite/http:\/\/'${OnionWebsite}'/g' /var/www/*.php
 #read -p "Merci de donner votre adresse email qui possède un clé PGP" keyid
