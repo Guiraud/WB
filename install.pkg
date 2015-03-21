@@ -103,4 +103,6 @@ OnionWebsite="$(sudo cat /var/lib/tor/hidden_service/hostname)"
 #sudo cat /var/lib/tor/hidden_service/hostname
 sudo sed -i 's/OnionWebsite/http:\/\/'${OnionWebsite}'/g' /var/www/*.html
 sudo sed -i 's/OnionWebsite/http:\/\/'${OnionWebsite}'/g' /var/www/*.php
-#read -p "Merci de donner votre adresse email qui possède un clé PGP" keyid
+read -p "Merci de donner votre adresse email " keyid
+sudo sed -i '/key_id/ s/"journaliste@mehdiguiraud.info"/"'${keyid}'"/g' /var/www/config.php
+read -p "Appuyez sur Entrée pour redemarrer votre Raspberry PI"
