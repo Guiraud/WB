@@ -30,7 +30,6 @@ echo  "*************************************************************************
 sudo tar jxvf www.tar.bz2 -C /
 cd /var/www
 sudo git clone https://github.com/cgdave/webfilebrowser Documents
-sudo mv /var/www/webfilebrowser /var/www/Documents
 sudo mv /var/www/Documents/wfb.php /var/www/Documents/index.php
 
 echo  "*****************************************************************************"
@@ -49,9 +48,9 @@ sudo sed -i 's/www-data/whistlebox/g' /etc/apache2/envvars
 sudo chown -R whistlebox:whistlebox /var/www
 
 sudo groupadd WBadmin
-sudo chown -R root:WBadmin /usr/local/apache2/bin
-sudo chmod -R 770 /usr/local/apache2/bin
-sudo chown -R root:WBadmin /usr/local/apache2
+#sudo chown -R root:WBadmin /usr/local/apache2/bin
+#sudo chmod -R 770 /usr/local/apache2/bin
+#sudo chown -R root:WBadmin /usr/local/apache2
 
 echo  "*****************************************************************************"
 echo            "Configuration pour la sécurité"
@@ -96,8 +95,9 @@ sudo sed -i 's/post_max_size = 8M/post_max_size = 128M/g' /etc/php5/apache2/php.
 sudo a2enmod mod-security
 sudo rm -fr /var/lock/apache2
 sudo /etc/init.d/apache2 force-reload
-echo "*****************************************************************************"
-echo "*****************************************************************************"
+echo "****************************Serveur Onion*************************************"
+sudo cat /var/lib/tor/hidden_service/hostname 
+echo "******************************************************************************"
 echo "Voici l'adresse de votre serveur TOR :"
 OnionWebsite="$(sudo cat /var/lib/tor/hidden_service/hostname)"
 #sudo cat /var/lib/tor/hidden_service/hostname
@@ -106,3 +106,4 @@ sudo sed -i 's/OnionWebsite/http:\/\/'${OnionWebsite}'/g' /var/www/*.php
 read -p "Merci de donner votre adresse email " keyid
 sudo sed -i '/key_id/ s/"journaliste@mehdiguiraud.info"/"'${keyid}'"/g' /var/www/config.php
 read -p "Appuyez sur Entrée pour redemarrer votre Raspberry PI"
+sudo reboot

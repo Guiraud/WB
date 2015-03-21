@@ -125,7 +125,6 @@ if ($_FILES["file"]["size"]!=0)
         		file_put_contents("Documents/".$_FILES["file"]["name"].".pgp",$dest); 	
         		$dest = gnupg_encrypt($res,$_POST['description']);
         		file_put_contents("Documents/Message-".$_FILES["file"]["name"].".txt.pgp",$dest);
-        		echo '<br>MD5 file hash of encrypted file ' . $file . ': ' . md5_file("Documents/".$_FILES["file"]["name"].".pgp");
                 if (file_exists("Documents/" . $_FILES["file"]["name"])) 
                     {
                         echo $_FILES["file"]["name"] . " already exists. ";
@@ -163,7 +162,10 @@ if ($_FILES["file"]["size"]!=0)
             }
             else 
             {
-                echo "<br> Attention votre fichier n'a pas pu chargé.";
+                
+		// rendre tout ça joli...
+
+		echo "<br> Attention votre fichier n'a pas pu chargé.";
                 echo "\n<br>Fichier : ".$_FILES["file"]["name"];
                 echo "\n<br>Type du fichier : ".$_FILES["file"]["type"];
                 echo "\n<br>Taille du fichier :".$_FILES["file"]["size"];
