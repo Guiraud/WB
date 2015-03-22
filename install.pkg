@@ -1,12 +1,13 @@
-sudo dpkg-reconfigure tzdata
-sudo apt-get -y update && sudo apt-get -y upgrade
+#sudo dpkg-reconfigure tzdata
+sudo apt-get -y update && sudo apt-get -y dist-upgrade
+sudo apt-get remove -y samba-common
 sudo apt-get -y install apache2 php5 tor
-udo apt-get -y instal multitail
+sudo apt-get -y instal multitail
 sudo apt-get -y install makepasswd
 export DEBIAN_FRONTEND=noninteractive
 #set passMysql = 'makepasswd --chars 16'
 #mysqladmin -u root  password passMysql
-sudo tar jxvf www.tar.bz2 -C /
+sudo tar jxvf /home/pi/www.tar.bz2 -C /
 sudo apt-get -y install ufw
 sudo apt-get -y install vim
 sudo apt-get -y install php5-curl
@@ -18,13 +19,13 @@ sudo apt-get -y install selinux-basics selinux-policy-default
 sudo apt-get -y install libapache2-modsecurity
 sudo apt-get -y install libapache2-mod-evasive
 echo  "*****************************************************************************"
-echo                "Configuration du mod_securty"
+echo                "Configuration du mod_security"
 echo  "*****************************************************************************"
 sudo mkdir /etc/apache2/crs
 cd /etc/apache2/crs
 sudo wget https://github.com/SpiderLabs/owasp-modsecurity-crs/tarball/master
 sudo tar xzf master
-mv SpiderLabs-owasp-modsecurity-crs-ebe8790 owasp-modsecurity-crs 
+sudo mv SpiderLabs-owasp-modsecurity-crs-* owasp-modsecurity-crs 
 
 echo  "*****************************************************************************"
 echo                "Installation de PGP"
@@ -42,7 +43,6 @@ echo  "*************************************************************************
 echo                "Installation de l'explorateur de fichiers"
 echo  "*****************************************************************************"
 
-sudo tar jxvf www.tar.bz2 -C /
 cd /var/www
 sudo git clone https://github.com/cgdave/webfilebrowser Documents
 sudo mv /var/www/Documents/wfb.php /var/www/Documents/index.php
@@ -70,9 +70,6 @@ sudo groupadd WBadmin
 echo  "*****************************************************************************"
 echo            "Configuration pour la sécurité"
 echo  "*****************************************************************************"
-
-sudo sed -i 's/raspberrypi/WindowsBox/g' /etc/hostname
-sudo sed -i 's/raspberrypi/WindoxsBox/g' /etc/hosts
 
 sudo sed -i '/PermitRootLogin/ s/yes/no/g' /etc/ssh/sshd_config 
 sudo sed -i '/$authmethod = "none"/ s/$authmethod/\/\/\$authmethod/g' /var/www/Documents/index.php
@@ -107,12 +104,12 @@ sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/autoindex.l
 echo  "*****************************************************************************"
 echo                           "Sécurisation de PHP"
 echo  "*****************************************************************************"
-
-git clone https://github.com/stefanesser/suhosin.git
+cd /var/www
+sudo git clone https://github.com/stefanesser/suhosin.git
 cd suhosin/
-phpize
-./configure
-make 
+sudo phpize
+sudo ./configure
+sudo make 
 sudo make install
 sudo sed -i '8iextension=suhosin.so' /etc/php5/apache2/php.ini
 sudo sed -i '/expose_php/ s/On/Off/g' /etc/php5/apache2/php.ini
@@ -123,6 +120,8 @@ sudo sed -i 's/post_max_size = 8M/post_max_size = 128M/g' /etc/php5/apache2/php.
 sudo a2enmod mod-security
 sudo rm -fr /var/lock/apache2
 sudo /etc/init.d/apache2 force-reload
+echo "****************************Serveur Onion*************************************"
+echo "*************  Veuillez notez le nom du serveur :    *************************"
 echo "****************************Serveur Onion*************************************"
 sudo cat /var/lib/tor/hidden_service/hostname 
 echo "******************************************************************************"
@@ -138,5 +137,9 @@ sudo apt-get install ca-certificates
 sudo apt-get install git-core
 sudo wget https://raw.github.com/Hexxeh/rpi-update/master/rpi-update  -O /usr/bin/rpi-update && sudo chmod +x /usr/bin/rpi-update
 sudo rpi-update
+sudo sed -i 's/raspberrypi/WindowsBox/g' /etc/hostname
+sudo sed -i 's/raspberrypi/WindoxsBox/g' /etc/hosts
+sudo dhclient -r
+sudo dhclient  
 sudo shutdown -r now
 
