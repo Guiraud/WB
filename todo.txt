@@ -1,0 +1,19 @@
+
+Les trucs qui reste à faire :
+
+SElinux
+integrity tools ?
+usb-storage driver (modprobe config) 
+firewire ohci driver (modprobe config)
+ Domain name: raspberrypi" à faire disparaitre
+iptables ?
+SSH option: PermitRootLogin
+expose_php option ?
+/etc/motd contents                                      [ WEAK ]
+/etc/issue contents                                     [ WEAK ]
+/etc/issue.net contents                                 [ WEAK ]
+Hardening ntp requests
+configuration de mod_security
+installation et configuration de mod_spamhaus
+installation et configuration de mod_evasive
+installation et configuration de mod_qos

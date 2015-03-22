@@ -1,6 +1,7 @@
+sudo dpkg-reconfigure tzdata
 sudo apt-get -y update && sudo apt-get -y upgrade
 sudo apt-get -y install apache2 php5 tor
-sudo apt-get -y install multitail
+udo apt-get -y instal multitail
 sudo apt-get -y install makepasswd
 export DEBIAN_FRONTEND=noninteractive
 #set passMysql = 'makepasswd --chars 16'
@@ -15,6 +16,20 @@ sudo apt-get -y install php-pear php5-dev
 sudo apt-get -y install selinux-basics selinux-policy-default
 #sudo apt-get -y install php5-mysql mysql-server
 sudo apt-get -y install libapache2-modsecurity
+sudo apt-get -y install libapache2-mod-evasive
+echo  "*****************************************************************************"
+echo                "Configuration du mod_securty"
+echo  "*****************************************************************************"
+sudo mkdir /etc/apache2/crs
+cd /etc/apache2/crs
+sudo wget https://github.com/SpiderLabs/owasp-modsecurity-crs/tarball/master
+sudo tar xzf master
+mv SpiderLabs-owasp-modsecurity-crs-ebe8790 owasp-modsecurity-crs 
+
+echo  "*****************************************************************************"
+echo                "Installation de PGP"
+echo  "*****************************************************************************"
+
 sudo pecl channel-update pecl.php.net
 sudo pecl install gnupg
 
@@ -56,7 +71,10 @@ echo  "*************************************************************************
 echo            "Configuration pour la sécurité"
 echo  "*****************************************************************************"
 
+sudo sed -i 's/raspberrypi/WindowsBox/g' /etc/hostname
+sudo sed -i 's/raspberrypi/WindoxsBox/g' /etc/hosts
 
+sudo sed -i '/PermitRootLogin/ s/yes/no/g' /etc/ssh/sshd_config 
 sudo sed -i '/$authmethod = "none"/ s/$authmethod/\/\/\$authmethod/g' /var/www/Documents/index.php
 sudo sed -i '/$authmethod = "realm"/ s/\/\/\$authmethod/\$authmethod/g' /var/www/Documents/index.php
 sudo sed -i 's/Web File Browser 0.4b15/Explorateur de fichiers/g' /var/www/Documents/index.php
@@ -69,12 +87,10 @@ sudo sed -i '/uploadmaxsize/ s/2097152/0/g' /var/www/Documents/index.php
 
 sudo sed -i '/^ServerTokens/ s/Full/Prod/g' /etc/apache2/conf.d/security
 sudo sed -i '/^ServerSignature/ s/On/Off/g' /etc/apache2/conf.d/security
+
 sudo sed -i 's/-FollowSymLinks/-Indexes/g'  /etc/apache2/sites-enabled/000-default
 sudo sed -i '6i                Order deny,allow' /etc/apache2/sites-enabled/000-default
 sudo sed -i 's/-MultiViews//g'  /etc/apache2/sites-enabled/000-default
-
-
-
 sudo sed -i '/ScriptAlias/d' /etc/apache2/sites-enabled/000-default
 #sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/alias.load
 sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/env.load
@@ -88,10 +104,22 @@ sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/setenvif.lo
 sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/status.load
 sudo sed -i 's/LoadModule/#LoadModule/g' /etc/apache2/mods-available/autoindex.load
 
-#sudo sed -i '1iextension=gnupg.so' /etc/php5/apache2/php.ini
+echo  "*****************************************************************************"
+echo                           "Sécurisation de PHP"
+echo  "*****************************************************************************"
+
+git clone https://github.com/stefanesser/suhosin.git
+cd suhosin/
+phpize
+./configure
+make 
+sudo make install
+sudo sed -i '8iextension=suhosin.so' /etc/php5/apache2/php.ini
+sudo sed -i '/expose_php/ s/On/Off/g' /etc/php5/apache2/php.ini
 sudo sed -i '8iextension=gnupg.so' /etc/php5/apache2/php.ini
 sudo sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 128M/g' /etc/php5/apache2/php.ini
 sudo sed -i 's/post_max_size = 8M/post_max_size = 128M/g' /etc/php5/apache2/php.ini
+
 sudo a2enmod mod-security
 sudo rm -fr /var/lock/apache2
 sudo /etc/init.d/apache2 force-reload
@@ -106,4 +134,9 @@ sudo sed -i 's/OnionWebsite/http:\/\/'${OnionWebsite}'/g' /var/www/*.php
 read -p "Merci de donner votre adresse email " keyid
 sudo sed -i '/key_id/ s/"journaliste@mehdiguiraud.info"/"'${keyid}'"/g' /var/www/config.php
 read -p "Appuyez sur Entrée pour redemarrer votre Raspberry PI"
-sudo reboot
+sudo apt-get install ca-certificates
+sudo apt-get install git-core
+sudo wget https://raw.github.com/Hexxeh/rpi-update/master/rpi-update  -O /usr/bin/rpi-update && sudo chmod +x /usr/bin/rpi-update
+sudo rpi-update
+sudo shutdown -r now
+
