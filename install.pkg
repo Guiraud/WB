@@ -57,6 +57,13 @@ sudo sed -i '74iHiddenServicePort 80 127.0.0.1:80' /etc/tor/torrc
 sudo sed -i '75iHiddenServicePort 22 127.0.0.1:22' /etc/tor/torrc
 sudo sed -i -e"s/localhost:8118/127.0.0.1:8118/" /etc/privoxy/config
 sudo sed -i -e"1314s/#//" /etc/privoxy/config
+sudo service privoxy start
+http_proxy=http://127.0.0.1:8118/
+HTTP_PROXY=$http_proxy
+export http_proxy HTTP_PROXY
+
+
+
 sudo service tor restart
 
 sudo groupadd whistlebox
