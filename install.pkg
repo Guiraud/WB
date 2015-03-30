@@ -1,23 +1,23 @@
 #sudo dpkg-reconfigure tzdata
-sudo apt-get -y update && sudo apt-get -y dist-upgrade
+sudo apt-get -y update && sudo torify apt-get -y dist-upgrade
 sudo apt-get remove -y samba-common
 sudo apt-get -y install apache2 php5 tor
-sudo apt-get -y instal multitail
-sudo apt-get -y install makepasswd
+sudo torify apt-get -y instal multitail
+sudo torify apt-get -y install makepasswd
 export DEBIAN_FRONTEND=noninteractive
 #set passMysql = 'makepasswd --chars 16'
 #mysqladmin -u root  password passMysql
 sudo tar jxvf /home/pi/www.tar.bz2 -C /
-sudo apt-get -y install ufw
-sudo apt-get -y install vim
-sudo apt-get -y install php5-curl
-sudo apt-get -y install libgpgme11-dev
-sudo apt-get -y install libcurl3-openssl-dev 
-sudo apt-get -y install php-pear php5-dev
-sudo apt-get -y install selinux-basics selinux-policy-default
-#sudo apt-get -y install php5-mysql mysql-server
-sudo apt-get -y install libapache2-modsecurity
-sudo apt-get -y install libapache2-mod-evasive
+sudo torify apt-get -y install ufw
+sudo torify apt-get -y install vim
+sudo torify apt-get -y install php5-curl
+sudo torify apt-get -y install libgpgme11-dev
+sudo torify apt-get -y install libcurl3-openssl-dev 
+sudo torify apt-get -y install php-pear php5-dev
+sudo torify apt-get -y install selinux-basics selinux-policy-default
+#sudo torify apt-get -y install php5-mysql mysql-server
+sudo torify apt-get -y install libapache2-modsecurity
+sudo torify apt-get -y install libapache2-mod-evasive
 echo  "*****************************************************************************"
 echo                "Configuration du mod_security"
 echo  "*****************************************************************************"
@@ -55,6 +55,8 @@ sudo chown debian-tor /var/lib/tor/hidden_service/
 sudo sed -i '73iHiddenServiceDir /var/lib/tor/hidden_service/' /etc/tor/torrc
 sudo sed -i '74iHiddenServicePort 80 127.0.0.1:80' /etc/tor/torrc
 sudo sed -i '75iHiddenServicePort 22 127.0.0.1:22' /etc/tor/torrc
+sudo sed -i -e"s/localhost:8118/127.0.0.1:8118/" /etc/privoxy/config
+sudo sed -i -e"1314s/#//" /etc/privoxy/config
 sudo service tor restart
 
 sudo groupadd whistlebox
@@ -133,8 +135,8 @@ sudo sed -i 's/OnionWebsite/http:\/\/'${OnionWebsite}'/g' /var/www/*.php
 read -p "Merci de donner votre adresse email " keyid
 sudo sed -i '/key_id/ s/"journaliste@mehdiguiraud.info"/"'${keyid}'"/g' /var/www/config.php
 read -p "Appuyez sur Entrée pour redemarrer votre Raspberry PI"
-sudo apt-get install ca-certificates
-sudo apt-get install git-core
+sudo torify apt-get install ca-certificates
+sudo torify apt-get install git-core
 sudo wget https://raw.github.com/Hexxeh/rpi-update/master/rpi-update  -O /usr/bin/rpi-update && sudo chmod +x /usr/bin/rpi-update
 sudo rpi-update
 sudo sed -i 's/raspberrypi/WindowsBox/g' /etc/hostname

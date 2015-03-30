@@ -1,18 +1,25 @@
 
-Les trucs qui reste à faire :
+option Key_id dans l'url
+multi destinataire
+envoi du mot de passe admin créé par mail crypté
+password par certificat
+
 
 SElinux
 integrity tools ?
 usb-storage driver (modprobe config) 
 firewire ohci driver (modprobe config)
- Domain name: raspberrypi" à faire disparaitre
 iptables ?
-SSH option: PermitRootLogin
-expose_php option ?
 /etc/motd contents                                      [ WEAK ]
 /etc/issue contents                                     [ WEAK ]
 /etc/issue.net contents                                 [ WEAK ]
 Hardening ntp requests
+
+
+----- 21 Mars 2015 ---
+SH option: PermitRootLogin
+Domain name: raspberrypi" à faire disparaitre
+expose_php option dans PHP
 configuration de mod_security
 installation et configuration de mod_spamhaus
 installation et configuration de mod_evasive
