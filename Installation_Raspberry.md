@@ -2,18 +2,20 @@ WB : Date de création :  08/03/2015
 #Installation de la RaspBerry PI
 
 ## Environnement de travail
->Assurez vous d'avoir au moins 7 Go d'espace libre sur votre disque de travail
->créez un dossier «Install» dans le dossier WB que vous venez de télécharger via Github.
->Sinon créez-le.
->Ouvrez un terminal et rendez-vous dans le dossier «Install».
+>Assurez vous d'avoir au moins 7 Go d'espace libre sur votre disque de travail.
+>Créez un dossier «WB_Install» dans le dossier WB que vous venez de télécharger via Github.
+>Ouvrez un terminal et rendez-vous dans le dossier «WB_Install».
 
-## Première étape téléchargement de l'image ISO Raspbian la plus récente :
+    mkdir WB_Install
+    cd WB_Install
+
+## Première étape : télécharger de l'image ISO Raspbian la plus récente :
     wget -O Raspian.zip http://downloads.raspberrypi.org/raspbian_latest
     unzip Raspian.zip
     cp *-raspbian-*.img Raspian.img
 
 Selon votre système d'exploitation le transfert sur la carte SD ou micro SD se fait différemment.
-##Deuxième étape, Gravure de la carte SD 
+##Deuxième étape : Graver de la carte SD 
 ###Sous Mac OS X 10.5
 
     sudo dd bs=1m if=chemin_vers_Raspian.img of=/dev/diskn
@@ -112,7 +114,7 @@ Le login est pi et le mot de passe, raspberry.
     pi@raspberrypi ~ $
 
 ## Les premiers pas sous RaspBerry PI
-### Changement du mot de passe
+### Changer le mot de passe
 
     pi@raspberrypi ~ $ sudo raspi-config
 
@@ -142,7 +144,7 @@ Le login est pi et le mot de passe, raspberry.
 >Rebootez.
 >Logiquement vous devriez être déconnecté de votre Raspberry PI. Reconnectez-vous en utilisant le mot de passe que vous avez créé précédemment.
 
-###Changement de la langue du système :
+###Changer la langue du système :
 
 >Une fois reconnecté revenez sur l'interface de connexion
 
