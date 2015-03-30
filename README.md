@@ -20,11 +20,12 @@ Pour installer la base du système, il faut commencer par se procurer
 L'installation précédente vous permet désormais de vous connecter à votre 
 
 ## Installation de la Whistlebox
-### Installation de SE-linux
-Configuration du moyau sécurisé	
 
 ###Installation sur la Raspberry PI des fichiers du serveur.
+Dans un terminal (Application / Utilitaires sous Mac ou windows+R sous windows ) 
+éxécuter la commande :
 
+    git clone https://github.com/Guiraud/WB
     Guiraud@WB$scp files/web.tar.bz pi@192.168.0.14:
     pi@192.168.0.14's password: 
     web.tar.bz                                                                                                                                                                               100% 4354KB   4.3MB/s   00:01    
@@ -54,11 +55,6 @@ Configuration du moyau sécurisé
 
 Effacer les fichiers du serveurs par défaut.
 
-    pi@raspberrypi ~ $ sudo rm -f /var/www/index.html.en /var/www/index.html
-    pi@raspberrypi ~ $ 
+    pi@raspberrypi ~ $ ./install.pkg
 
-### Démarrage du serveur tor
-    sudo -s
-    cd /var/lib/tor
-    mkdir hidden_service
-    service tor restart
+L'installation et la configuration de la Whistle doit se terminé sur une demande de votre email.
