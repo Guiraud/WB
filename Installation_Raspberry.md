@@ -127,12 +127,12 @@ Le login est pi et le mot de passe, raspberry.
 
     Password changed successfully
 
-### Mise à jour du système
+### Mettre à jour du système
 
     sudo apt-get update
     sudo apt-get -y upgrade
 
-### Changement de l'espace occupé
+### Changer de l'espace occupé
 
 >RaspBian est configuré au départ pour une carte SD de petite taille. Il faut donc demander au système de remplir entièrement la carte afin d'avoir suffisamment de place.
 
@@ -166,5 +166,12 @@ Le login est pi et le mot de passe, raspberry.
     en_GB.UTF-8... done
     fr_FR.UTF-8... done
     Generation complete.
+### Allouer le maximum de mémoire disponible au processeur
+
+>Puisque la whistlebox n'est relié à aucun écran, il n'est pas nécessaire de donner de la mémoire au processeur graphique (GPU)
+
+    sudo raspi-config
+
+>Sélectionnez « Advanced options » puis « A3 Memory split », ensuite écrire 16 à la place de 64.
 
 Voilà c'est la fin de la première partie. À ce niveau là, c'est bien de faire une pause. Vous avez une Raspberry PI qui est prête pour l'installation du système WHISTLEBOX.
