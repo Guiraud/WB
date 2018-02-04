@@ -16,9 +16,7 @@ Pour installer la base du système, il faut commencer par se procurer
 5. Le logiciel putty pour ceux qui sont sous Windows ( [que vous pouvez télécharger ici](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 6. Ensuite allez sur cette [page](https://github.com/Guiraud/WB/blob/master/Installation_Raspberry.md)
 
-## Création de votre clef PGP
-L'installation précédente vous permet désormais de vous connecter à votre 
-
+#Vous aurez besoin d'une clef PGP
 ## Installation de la Whistlebox
 
 ###Installation sur la Raspberry PI des fichiers du serveur.
@@ -57,4 +55,4 @@ Effacer les fichiers du serveurs par défaut.
 
     pi@raspberrypi ~ $ ./install.pkg
 
-L'installation et la configuration de la Whistle doit se terminé sur une demande de votre email.
+L'installation et la configuration de la Whistle doit se terminer sur une demande de votre email.
